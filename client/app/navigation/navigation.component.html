@@ -1,0 +1,13 @@
+﻿<nav class="navbar navbar-default ">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">HR-PORTFOLIO</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="currentUser">
+                <span *ngIf="flag">{{currentUser.email}}</span>
+                <button *ngIf="flag" [routerLink]="['/login']" class="btn btnLogOut">Log out</button>
+            </li>
+        </ul>
+    </div>
+</nav>

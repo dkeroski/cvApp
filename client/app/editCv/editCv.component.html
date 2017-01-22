@@ -1,0 +1,256 @@
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" media="all" /> 
+<div id="doc2" class="yui-t7">
+    <div id="inner">
+        <div id="hd">
+            <div class="yui-gc">
+                <div class="yui-u first">
+                    <h1>{{currentUser.firstName}} {{currentUser.lastName}} </h1>
+                    <input [(ngModel)]="basic.jobPosition" type="text" *ngIf="flagDoneJobButton" class="form-control" placeholder="Job position"
+                        aria-describedby="basic-addon2">
+                    <h2>{{basic.jobPosition}}<button *ngIf="flagEditJobButton" type="button" class="btn btn-primary btn-xs" (click)='addJobPositionShowInputText()'>Edit</button>
+                        <button *ngIf="!flagAddJobPosition" type="button" class="btn btn-info btn-xs" (click)='addJobPositionShowInputText()'>Add job position</button>
+                        <button *ngIf="flagDoneJobButton" type="button" class="btn btn-success btn-xs" (click)='addJobPosition()'>Done</button>
+                    </h2>
+                </div>
+                <div class="yui-u">
+                    <div class="contact-info">
+                        <h3><a id="pdf"  (click)='downloadPDF()'>Download PDF</a></h3>
+                        <h3><a href="mailto:name@yourdomain.com">{{basic.email}}</a> <button *ngIf="flagEditEmailButton" type="button"
+                                class="btn btn-primary btn-xs" (click)='addEmailShowInputText()'>Edit</button>
+                            <button *ngIf="flagDoneEmailButton" type="button" class="btn btn-success btn-xs" (click)='addEmail()'>Done</button>
+                        </h3>
+                        <input [(ngModel)]="basic.email" *ngIf="flagDoneEmailButton" type="text" class="form-control" placeholder="Email" aria-describedby="basic-addon2">
+                        <h3>{{basic.phone}}
+                            <button *ngIf="flagEditPhoneButton" type="button" class="btn btn-primary btn-xs" (click)='addPhoneShowInputText()'>Edit</button>
+                            <button *ngIf="flagDonePhoneButton" type="button" class="btn btn-success btn-xs" (click)='addPhone()'>Done</button>
+                        </h3>
+                        <input [(ngModel)]="basic.phone" *ngIf="flagDonePhoneButton" type="text" class="form-control" placeholder="Phone" aria-describedby="basic-addon2">
+                    </div>
+                    <!--// .contact-info -->
+                </div>
+                <button type="button" *ngIf="!flagAddEmail" class="btn btn-info btn-xs" (click)='addEmailShowInputText()'>Add email</button>
+                <button type="button" *ngIf="!flagAddPhone" class="btn btn-info btn-xs" (click)='addPhoneShowInputText()'>Add phone</button>
+            </div>
+            <!--// .yui-gc -->
+        </div>
+        <!--// hd -->
+        <div id="bd">
+            <div id="yui-main">
+                <div class="yui-b">
+                    <div class="yui-gf">
+                        <div class="yui-u first">
+                            <h2>About</h2>
+                        </div>
+                        <div class="yui-u">
+                            <p class="enlarge">
+                                {{basic.summary}}
+                                <button type="button" *ngIf="flagEditAboutButton" class="btn btn-primary btn-xs" (click)='addAboutShowInputText()'>Edit</button>
+                                <button type="button" *ngIf="flagEditAboutButton" class="btn btn-danger btn-xs" (click)='deleteAbout(basic.summary)'>Delete</button>
+                            </p>
+                            <textarea placeholder="Write something about yourself..." *ngIf="flagDoneAboutButton" [(ngModel)]="basic.summary" class="form-control"
+                                rows="3" style="resize:none"></textarea>
+                            <button *ngIf="flagDoneAboutButton" type="button" class="btn btn-success btn-xs" (click)='addAbout()'>Done</button>
+                            <button type="button" *ngIf="!flagAddAbout" class="btn btn-info btn-xs pull-right" (click)='addAboutShowInputText()'>Add</button>
+                        </div>
+                    </div>
+                    <!--// .yui-gf -->
+                    <div class="yui-gf">
+                        <div class="yui-u first">
+                            <h2>Languages</h2>
+                        </div>
+                        <div class="yui-u">
+                            <ul class="talent" *ngFor='let language of languages ;  let i = index'>
+                                <li>{{language.name}} {{language.level}} %</li>
+                                <button type="button" class="btn btn-danger btn-xs" (click)="deleteLanguage(i)">Delete</button>
+                                <br>
+                            </ul>
+                            <button *ngIf="!flagAddLanguage" type="button" class="btn btn-info btn-xs pull-right" (click)="addLanguageShowForm()">Add</button>
+                        </div>
+                        <div style="margin-left: 138px ; padding-top: 45px;">
+                            <form (ngSubmit)="addLanguage()" *ngIf="flagDoneLanguageButton">
+                                <div class="form-group">
+                                    <div class="col-sm-3">
+                                        <input placeholder="Language" name="name" [(ngModel)]="modelLanguage.name" #name="ngModel" type="text" class="form-control"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-3">
+                                        <input placeholder="Level" name="level" type="number" [(ngModel)]="modelLanguage.level" #level="ngModel" class="form-control"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-3">
+                                        <button type="submit" class="btn btn-success">Done</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!--// .yui-gf -->
+                    <div class="yui-gf">
+                        <div class="yui-u first">
+                            <h2>Skills</h2>
+                        </div>
+                        <div class="yui-u">
+                            <ul class="talent" *ngFor='let skill of skills ; let i = index'>
+                                <li>{{skill.name}} {{skill.level}} %</li>
+                                <button type="button" class="btn btn-danger btn-xs" (click)="deleteSkill(i)">Delete</button>
+                            </ul>
+                            <button *ngIf="!flagAddSkill" type="button" class="btn btn-info btn-xs pull-right" (click)="addSkillShowForm()">Add</button>
+                        </div>
+                        <div style="margin-left: 138px; padding-top: 45px;">
+                            <form (ngSubmit)="addSkill()" *ngIf="flagDoneSkillButton">
+                                <div class="form-group">
+                                    <div class="col-sm-4">
+                                        <input placeholder="Skill" name="name" [(ngModel)]="modelSkill.name" #name="ngModel" type="text" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-4">
+                                        <input placeholder="Level" name="level" type="number" [(ngModel)]="modelSkill.level" #level="ngModel" class="form-control"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-4">
+                                        <button type="submit" class="btn btn-success">Done</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!--// .yui-gf-->
+                    <div class="yui-gf">
+                        <div class="yui-u first">
+                            <h2>Experience</h2>
+                        </div>
+                        <!--// .yui-u -->
+                        <div class="yui-u">
+                            <div class="job" *ngFor='let el of work ; let i = index'>
+                                <h2>{{el.company}}</h2>
+                                <h3>{{el.position}}</h3>
+                                <h4>{{el.startDate }}-{{el.endDate }}</h4>
+                                <p>{{el.summary}}</p>
+                                <a>{{el.website}}</a> <br>
+                                <button type="button" *ngIf="flagEditExperienceButton" class="btn btn-primary btn-xs" (click)="editExperience(i)">Edit</button>
+                                <button type="button" class="btn btn-danger btn-xs" (click)="deleteExperience(i)">Delete</button>
+                            </div>
+                            <form (ngSubmit)="addExperience()" *ngIf="flagDoneExperienceButton">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label>Company:</label>
+                                        <input placeholder="" name="company" [(ngModel)]="modelExperience.company" #company="ngModel" type="text" class="form-control"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label>Position:</label>
+                                        <input name="position" type="text" [(ngModel)]="modelExperience.position" #position="ngModel" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label>Website:</label>
+                                        <input name="website" type="text" [(ngModel)]="modelExperience.website" #website="ngModel" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label>Start date:</label>
+                                        <input name="startDate" type="date" [(ngModel)]="modelExperience.startDate" #startDate="ngModel" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label>End date:</label>
+                                        <input name="endDate" type="date" [(ngModel)]="modelExperience.endDate" #endDate="ngModel" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label>Summary:</label>
+                                        <textarea rows="3" cols="97.5" name="summary" [(ngModel)]="modelExperience.summary" #summary="ngModel">
+                                        </textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-4">
+                                        <button type="submit" class="btn btn-success">Done</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <button *ngIf="!flagAddExperience" type="button" class="btn btn-info btn-xs pull-right" (click)="addExperienceShowForm()">Add</button>
+                        </div>
+                        <!--// .yui-u -->
+                    </div>
+                    <!--// .yui-gf -->
+                    <div class="yui-gf last">
+                        <div class="yui-u first">
+                            <h2>Education</h2>
+                        </div>
+                        <div class="yui-u">
+                            <div *ngFor='let ed of education ; let i = index'>
+                                <h2>{{ed.institution}}</h2>
+                                <h4 class="pull-right">{{ed.startDate }}-{{ed.endDate }}</h4>
+                                <h3>{{ed.studyType}}</h3>
+                                <br>
+                                <button type="button" *ngIf="flagEditEducationButton" class="btn btn-primary btn-xs" (click)="editEducation(i)">Edit</button>
+                                <button type="button" class="btn btn-danger btn-xs" (click)="deleteEducation(i)">Delete</button>
+                                <hr>
+                            </div>
+                            <form (ngSubmit)="addEducation()" *ngIf="flagDoneEducationButton">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label>Institution:</label>
+                                        <input placeholder="" name="institution" [(ngModel)]="modelEducation.institution" #institution="ngModel" type="text" class="form-control"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label>Styde type:</label>
+                                        <input name="studyType" type="text" [(ngModel)]="modelEducation.studyType" #studyType="ngModel" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label>Start date:</label>
+                                        <input name="startDate" type="date" [(ngModel)]="modelEducation.startDate" #startDate="ngModel" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label>End date:</label>
+                                        <input name="endDate" type="date" [(ngModel)]="modelEducation.endDate" #endDate="ngModel" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-4">
+                                        <button type="submit" class="btn btn-success">Done</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <button type="button" *ngIf="!flagAddEducation" type="button" class="btn btn-info btn-xs pull-right" (click)="addEducationShowForm()">Add</button>
+                    <!--// .yui-gf -->
+                </div>
+                <!--// .yui-b -->
+            </div>
+            <!--// yui-main -->
+        </div>
+        <!--// bd -->
+        <div id="ft">
+            <p>{{currentUser.firstName}} {{currentUser.lastName}} &mdash; <a href="mailto:name@yourdomain.com">{{basic.email}}</a>                &mdash; {{basic.phone}}</p>
+        </div>
+        <!--// footer -->
+    </div>
+    <button type="button" class="btn btn-info btn-lg pull-right saveCancelButtons" (click)=saveChanges()>Save changes</button>
+    <button type="button" [routerLink]="['']" class="btn btn-warning btn-lg saveCancelButtons">Cancel</button>
+
+    <!-- // inner -->
+</div>
+<!--// doc -->

@@ -1,0 +1,20 @@
+﻿
+<div class="container">
+        <div class="card card-container">
+            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+            <img id="profile-img" class="profile-img-card" src="app/img/logo2.png" />
+            <form class="form-signin"  (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+                <span id="reauth-email" class="reauth-email"></span>
+                <input type="email"  name="username" [(ngModel)]="model.username" #username="ngModel" required class="form-control" placeholder="Email address"  autofocus>
+                  <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+                <input type="password" name="password"  [(ngModel)]="model.password" #password="ngModel"  class="form-control" placeholder="Password" required>
+                 <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+            </form><!-- /form -->
+            <a  [routerLink]="['/register']" class="btn btn-link">
+                Register
+            </a>
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+ 
+  

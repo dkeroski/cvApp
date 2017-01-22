@@ -1,0 +1,28 @@
+﻿<section class="container"> 
+	<div class="row">
+      <div class="col-md-9">
+        <div class="media">
+            <a class="pull-left" href="#">
+                <img class="media-object dp img-circle" src="app/listCv/img/img_avatar.png" style="width: 100px;height:100px;">
+            </a>
+            <div class="media-body">
+                <h3 class="media-heading">{{currentUser.firstName}} {{currentUser.lastName}} <small> </small></h3>
+                <h4>Software Developer</h4>
+                <hr style="margin:8px auto">
+                <span class="label label-info">username: {{currentUser.username}}</span>
+                <span class="label label-info">e-mail: {{currentUser.email}}</span>
+            </div>
+        </div>
+    </div>
+  <div class="col col-md-3 media">
+    <button *ngIf="flagHideCreateButton" (click)="createCv()" class="btn btn-success btn-lg btn-block">Create CV</button>
+    <button *ngIf="!flagHideCreateButton" [routerLink]="['/editCv']" class="btn btn-warning btn-lg btn-block">Edit CV</button>
+    <button [routerLink]="['/vacation']" type="submit" class="btn btn-info btn-lg btn-block">Book vacation</button>
+  </div>
+	</div>
+</section>
+
+<h4 class="navbar-brand">ALL EMPLOYERS CV's</h4>
+<hr>
+<listCv>
+</listCv>

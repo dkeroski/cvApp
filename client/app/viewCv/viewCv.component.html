@@ -1,0 +1,104 @@
+﻿<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" media="all" /> 
+<body>
+    <div id="doc2" class="yui-t7">
+    <div id="inner">
+        <div id="hd">
+            <div class="yui-gc">
+                <div class="yui-u first">
+                    <h1>{{basic.firstName}} {{basic.lastName}} </h1>
+                    <h2>{{basic.jobPosition}}</h2>
+                </div>
+                <div class="yui-u">
+                    <div class="contact-info">
+                        <h3><a id="pdf" href="#">Download PDF</a></h3>
+                        <h3><a href="mailto:name@yourdomain.com">{{basic.email}}</a></h3>
+                        <h3>{{basic.phone}}</h3>
+                    </div>
+                    <!--// .contact-info -->
+                </div>
+            </div>
+            <!--// .yui-gc -->
+        </div>
+        <!--// hd -->
+        <div id="bd">
+            <div id="yui-main">
+                <div class="yui-b">
+                    <div class="yui-gf">
+                        <div class="yui-u first">
+                            <h2>About</h2>
+                        </div>
+                        <div class="yui-u">
+                            <p class="enlarge">
+                                {{basic.summary}}
+                            </p>
+                        </div>
+                    </div>
+                    <!--// .yui-gf -->
+                    <div class="yui-gf">
+                        <div class="yui-u first">
+                            <h2>Languages</h2>
+                        </div>
+                        <div class="yui-u">
+                            <ul class="talent" *ngFor='let language of languages'>
+                                <li>{{language.name}} {{language.level}} %</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--// .yui-gf -->
+                    <div class="yui-gf">
+                        <div class="yui-u first">
+                            <h2>Skills</h2>
+                        </div>
+                        <div class="yui-u">
+                            <ul class="talent" *ngFor='let skill of skills'>
+                                <li>{{skill.name}} {{skill.level}} %</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--// .yui-gf-->
+                    <div class="yui-gf">
+                        <div class="yui-u first">
+                            <h2>Experience</h2>
+                        </div>
+                        <!--// .yui-u -->
+                        <div class="yui-u">
+                            <div class="job" *ngFor='let el of work'>
+                                <h2>{{el.company}}</h2>
+                                <h3>{{el.position}}</h3>
+                                <h4>{{el.startDate | date: 'MM.yyyy'}}-{{el.endDate | date: 'MM.yyyy'}}</h4>
+                                <p>{{el.summary}}</p>
+                                <a>{{el.website}}</a> <br>
+                            </div>
+                        </div>
+                        <!--// .yui-u -->
+                    </div>
+                    <!--// .yui-gf -->
+                    <div class="yui-gf last">
+                        <div class="yui-u first">
+                            <h2>Education</h2>
+                        </div>
+                        <div class="yui-u" *ngFor='let ed of education'>
+                            <h2>{{ed.institution}}</h2>
+                            <h4 class="pull-right">{{ed.startDate | date: 'MM.yyyy'}}-{{ed.endDate | date: 'MM.yyyy'}}</h4>
+                            <h3>{{ed.studyType}} </h3>
+                            <br>
+                            <hr>
+                        </div>
+                    </div>
+                    <!--// .yui-gf -->
+                </div>
+                <!--// .yui-b -->
+            </div>
+            <!--// yui-main -->
+        </div>
+        <!--// bd -->
+        <div id="ft">
+            <p>{{basic.firstName}} {{basic.lastName}} &mdash; <a href="mailto:name@yourdomain.com">{{basic.email}}</a> &mdash;
+                {{basic.phone}}</p>
+        </div>
+        <!--// footer -->
+    </div>
+    <!-- // inner -->
+</div>
+<!--// doc <-->
+</body>

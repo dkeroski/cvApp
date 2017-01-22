@@ -1,0 +1,31 @@
+.currentUser{
+    color: grey;
+    margin-top: 10px;
+}
+.navbar {
+    border-bottom: 4px solid #64B5F6;
+}
+
+.btnLogOut {
+    border-radius: 0px;
+    font-weight: 400px;
+    border: 1px solid #64B5F6;
+    margin-right: 10px;
+    background-color: transparent
+}
+.user-menu {
+	display: inline-block;
+	margin-top: 14px;
+	margin-right: 10px;
+	float: right;
+	list-style: none;
+	padding: 0;
+}
+
+.user-menu a {
+	color: black;
+}
+
+.user-menu a:hover, .user-menu a:focus {
+	text-decoration: none;
+}

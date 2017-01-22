@@ -1,0 +1,55 @@
+﻿<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi"
+    crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK"
+    crossorigin="anonymous"></script>-->
+<!--<div class="row">
+<div class="card card-block col-md-4" *ngFor="let cv of cvs">
+    <h3 class="card-title">{{cv.basics.firstName}} {{cv.basics.lastName}}</h3>
+    <p class="card-text">{{cv.basics.summary}}</p>
+    <a href="#" class="btn btn-primary" [routerLink]="['/viewCv', {id:cv.userId}]">View</a>
+</div>
+    </div>-->
+
+<!--
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+<div class="row">
+<div class="col-md-4 container" *ngFor="let cv of cvs">
+  <img src="app/listCv/img/img_avatar.png" alt="" />
+  <p class="title">{{cv.basics.firstName}} {{cv.basics.lastName}}
+      <br> <span class="jobPosition">{{cv.basics.jobPosition}}</span>
+  </p>
+
+  <div class="overlay"></div>
+  <div class="button"><a [routerLink]="['/viewCv', {id:cv.userId}]"> Preview </a></div>
+</div>    -->
+
+
+<section id="t-cards">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-3" *ngFor="let cv of cvs">
+                <div class="panel panel-default panel-card" >
+                    <div class="panel-heading">
+                        <button class="btn btn-primary btn-sm" role="button">Info</button>
+                    </div>
+                    <div class="panel-figure">
+                        <img class="img-responsive img-circle" src="app/listCv/img/img_avatar2.png" />
+                    </div>
+                    <div class="panel-body text-center">
+                        <h3 class="panel-header">{{cv.basics.firstName}} {{cv.basics.lastName}}</h3>
+                        <small>{{cv.basics.jobPosition}}</small>
+                    </div>
+                    <div class="panel-thumbnails">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="thumbnail">
+                                    <a class="previewButton"[routerLink]="['/viewCv', {id:cv.userId}]"> Preview </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

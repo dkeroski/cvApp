@@ -1,0 +1,62 @@
+﻿<section class="container">
+    <div class="card card-container">
+        <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+        <!--<img id="profile-img" class="profile-img-card" src="app/img/logo2.png" />-->
+        <form class="form-signin" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+
+            <label class="col-sm-3 control-label">From: </label>
+            <div class="col-sm-9">
+                <input name="from" [(ngModel)]="model.from" #from="ngModel" type="date" class="form-control" required>
+            </div>
+
+            <label class="col-sm-3 control-label">To: </label>
+            <div class="col-sm-9">
+                <input name="to" type="date" [(ngModel)]="model.to" #to="ngModel" class="form-control" required>
+            </div>
+
+            <label class="col-sm-3 control-label">Description: </label>
+            <div class="col-sm-9">
+                <textarea name="description" [(ngModel)]="model.description" #description="ngModel" class="form-control" rows="3" required></textarea>
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-6 buttonsFormVocation">
+                    <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Send</button>
+                </div>
+
+                <div class="col-sm-6 buttonsFormVocation">
+                    <button [routerLink]="['']" class="btn btn-lg btn-warning btn-block btn-signin-cancel">Cancel</button>
+                </div>
+            </div>
+        </form>
+        <!-- /form -->
+    </div>
+</section>
+<section class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let vacation of vacations'>
+                        <td class="filterable-cell">{{vacation.firstName}}</td>
+                        <td class="filterable-cell">{{vacation.lastName}}</td>
+                        <td class="filterable-cell"> {{vacation.from | date: 'dd.MM.yyyy'}}</td>
+                        <td class="filterable-cell"> {{vacation.to | date: 'dd.MM.yyyy'}}</td>
+                        <td class="filterable-cell"> {{vacation.status}}</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</section>
