@@ -1,0 +1,4 @@
+npm install for client and server
+1.Start MongoDB
+2.Server: nodemon index.js
+3.Client: npm start
