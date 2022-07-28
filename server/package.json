@@ -13,7 +13,7 @@
     "body-parser": "^1.15.2",
     "express": "^4.13.3",
     "jsonwebtoken": "^7.2.1",
-    "mongoose": "^4.5.5",
+    "mongoose": "^6.4.6",
     "morgan": "^1.7.0",
     "nodemon": "^1.10.0"
   }
